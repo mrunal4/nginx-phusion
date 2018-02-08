@@ -1,0 +1,25 @@
+version: "2"
+services:
+  nginx:
+    image: mrunal4/nginx:
+    volumes:
+      - ./default:/etc/nginx/sites-enabled/default
+#      - /data/nginx-proxy/certs:/etc/ssl/<domain.com>:ro
+#      - /data/vol1:/var/www/vol1:ro
+    expose:
+      - "443"
+    ports:
+      - "8180:80"
+      - "8143:443"
+    environment:
+     - TERM=xterm
+#      - LETSENCRYPT_EMAIL=<domain.com>
+#      - LETSENCRYPT_HOST=<domain.com>
+#      - VIRTUAL_HOST=<domain.com>
+#      - VIRTUAL_PROTO=https
+#      - VIRTUAL_PORT=443
+
+networks:
+  default:
+    external:
+      name: nginx-bridge-network
